@@ -15,13 +15,13 @@ class IGScraper:
         self.session.cookies.set('ig_pr', '1')
         self.rhx_gis = None
 
-    def scrape_hashtag(self, hashtag, end_cursor='', maximum=1000, first=1000,
+    def scrape_hashtag(self, hashtag, end_cursor='', maximum=10000, first=10000,
                        initial=True, detail=False):
         if initial:
             self.items = []
 
         try:
-            params = QUERY_HASHTAG_VARS.format(hashtag, 1000, end_cursor)
+            params = QUERY_HASHTAG_VARS.format(hashtag, 10000, end_cursor)
             response = self.session.get(QUERY_HASHTAG.format(params)).json()
             data = response['data']['hashtag']
         except Exception:
